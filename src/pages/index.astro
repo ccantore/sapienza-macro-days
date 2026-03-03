@@ -38,6 +38,39 @@ const speakers = [
     imageSrc: `${baseUrl}images/speakers/florin-bilbiie.jpg`
   }
 ];
+
+const discussants = [
+  {
+    name: "Filippo Ferroni",
+    affiliation: "University of Bologna",
+    imageSrc: `${baseUrl}images/discussants/filippo-ferroni.png`
+  },
+  {
+    name: "Massimiliano Tancioni",
+    affiliation: "Sapienza University of Rome",
+    imageSrc: `${baseUrl}images/discussants/massimiliano-tancioni.jpg`
+  },
+  {
+    name: "Tiziano Ropele",
+    affiliation: "Banca d'Italia",
+    imageSrc: `${baseUrl}images/discussants/tiziano-ropele.jpg`
+  },
+  {
+    name: "Andrea Ajello",
+    affiliation: "Federal Reserve Board",
+    imageSrc: `${baseUrl}images/discussants/andrea-ajello.jpg`
+  },
+  {
+    name: "Facundo Piguillem",
+    affiliation: "EIEF",
+    imageSrc: `${baseUrl}images/discussants/facundo-piguillem.jpg`
+  },
+  {
+    name: "Francesco Saverio Gaudio",
+    affiliation: "Sapienza University of Rome",
+    imageSrc: `${baseUrl}images/discussants/francesco-saverio-gaudio.jpg`
+  }
+];
 ---
 
 <BaseLayout title="Sapienza Macro Days 2026 | Macroeconomics Workshop">
@@ -71,6 +104,7 @@ const speakers = [
         
         <div class="hero__cta">
           <a href="#speakers" class="btn btn--primary">View Speakers</a>
+          <a href="#discussants" class="btn btn--outline btn--light">Discussants</a>
           <a href="#programme" class="btn btn--outline btn--light">Programme</a>
         </div>
       </div>
@@ -107,6 +141,22 @@ const speakers = [
             affiliation={speaker.affiliation}
             isKeynote={speaker.isKeynote}
             imageSrc={speaker.imageSrc}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Discussants Section -->
+  <section class="section" id="discussants">
+    <div class="container">
+      <h2 class="section-title">Discussants</h2>
+      <div class="speakers-grid">
+        {discussants.map((discussant) => (
+          <SpeakerCard
+            name={discussant.name}
+            affiliation={discussant.affiliation}
+            imageSrc={discussant.imageSrc}
           />
         ))}
       </div>
