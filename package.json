@@ -1,0 +1,16 @@
+{
+  "name": "sapienza-macro-days",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Website for the Sapienza Macro Days workshop series",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  }
+}

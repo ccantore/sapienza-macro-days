@@ -1,0 +1,186 @@
+---
+interface Props {
+  time: string;
+  title: string;
+  presenter?: string;
+  affiliation?: string;
+  coauthors?: string;
+  discussant?: string;
+  discussantAffiliation?: string;
+  isBreak?: boolean;
+  isPanel?: boolean;
+  panelists?: string[];
+}
+
+const { 
+  time, 
+  title, 
+  presenter, 
+  affiliation, 
+  coauthors, 
+  discussant,
+  discussantAffiliation,
+  isBreak = false,
+  isPanel = false,
+  panelists = []
+} = Astro.props;
+---
+
+<div class:list={['session-block', { 'session-block--break': isBreak, 'session-block--panel': isPanel }]}>
+  <div class="session-block__time">
+    <span>{time}</span>
+  </div>
+  
+  <div class="session-block__content">
+    {isBreak ? (
+      <p class="session-block__break-text">{title}</p>
+    ) : isPanel ? (
+      <>
+        <h4 class="session-block__title">{title}</h4>
+        {panelists.length > 0 && (
+          <ul class="session-block__panelists">
+            {panelists.map(panelist => (
+              <li>{panelist}</li>
+            ))}
+          </ul>
+        )}
+      </>
+    ) : (
+      <>
+        <h4 class="session-block__title">"{title}"</h4>
+        
+        {presenter && (
+          <p class="session-block__presenter">
+            <strong>{presenter}</strong>
+            {affiliation && <span class="session-block__affiliation">({affiliation})</span>}
+          </p>
+        )}
+        
+        {coauthors && (
+          <p class="session-block__coauthors">
+            joint with {coauthors}
+          </p>
+        )}
+        
+        {discussant && (
+          <p class="session-block__discussant">
+            <span class="session-block__label">Discussant:</span> {discussant}
+            {discussantAffiliation && <span class="session-block__affiliation">({discussantAffiliation})</span>}
+          </p>
+        )}
+      </>
+    )}
+  </div>
+</div>
+
+<style>
+  .session-block {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .session-block:last-child {
+    border-bottom: none;
+  }
+  
+  .session-block--break {
+    background: var(--color-background-alt);
+    margin: 0 calc(var(--space-lg) * -1);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: none;
+  }
+  
+  .session-block--panel {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    margin: var(--space-md) calc(var(--space-lg) * -1) 0;
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: 8px;
+    border-bottom: none;
+  }
+  
+  .session-block--panel .session-block__time {
+    color: var(--color-accent);
+  }
+  
+  .session-block--panel .session-block__title {
+    color: var(--color-white);
+  }
+  
+  .session-block__time {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 0.95rem;
+  }
+  
+  .session-block__title {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.4;
+  }
+  
+  .session-block__presenter {
+    margin-bottom: var(--space-xs);
+  }
+  
+  .session-block__affiliation {
+    color: var(--color-text-light);
+    font-weight: 400;
+    margin-left: var(--space-xs);
+  }
+  
+  .session-block--panel .session-block__affiliation {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .session-block__coauthors {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .session-block__discussant {
+    font-size: 0.9rem;
+    margin-top: var(--space-sm);
+  }
+  
+  .session-block__label {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+  
+  .session-block__break-text {
+    font-weight: 500;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+  
+  .session-block__panelists {
+    list-style: none;
+    margin-top: var(--space-md);
+  }
+  
+  .session-block__panelists li {
+    padding: var(--space-xs) 0;
+    opacity: 0.95;
+  }
+  
+  @media (max-width: 600px) {
+    .session-block {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+    
+    .session-block__time {
+      font-size: 0.9rem;
+    }
+  }
+</style>

@@ -1,0 +1,606 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpeakerCard from '../components/SpeakerCard.astro';
+import SessionBlock from '../components/SessionBlock.astro';
+
+const baseUrlRaw = import.meta.env.BASE_URL;
+const baseUrl = baseUrlRaw.endsWith('/') ? baseUrlRaw : `${baseUrlRaw}/`;
+
+const speakers = [
+  {
+    name: "Giorgio Primiceri",
+    affiliation: "Northwestern University",
+    imageSrc: `${baseUrl}images/speakers/giorgio-primiceri.jpg`
+  },
+  {
+    name: "Silvia Miranda Agrippino",
+    affiliation: "University of Oxford",
+    imageSrc: `${baseUrl}images/speakers/silvia-miranda-agrippino.jpg`
+  },
+  {
+    name: "Leonardo Melosi",
+    affiliation: "European University Institute",
+    imageSrc: `${baseUrl}images/speakers/leonardo-melosi.jpg`
+  },
+  {
+    name: "Alessia Russo",
+    affiliation: "University of Padova",
+    imageSrc: `${baseUrl}images/speakers/alessia-russo.png`
+  },
+  {
+    name: "Guido Ascari",
+    affiliation: "University of Pavia & De Nederlandsche Bank",
+    imageSrc: `${baseUrl}images/speakers/guido-ascari.jpg`
+  },
+  {
+    name: "Florin Bilbiie",
+    affiliation: "University of Cambridge",
+    imageSrc: `${baseUrl}images/speakers/florin-bilbiie.jpg`
+  }
+];
+---
+
+<BaseLayout title="Sapienza Macro Days 2026 | Macroeconomics Workshop">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__background"></div>
+    <div class="container">
+      <div class="hero__content">
+        <p class="hero__edition">Third Edition</p>
+        <h1 class="hero__title">Sapienza Macro Days</h1>
+        <p class="hero__subtitle">Annual Macroeconomics Workshop</p>
+        
+        <div class="hero__details">
+          <div class="hero__detail">
+            <svg class="hero__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>May 21-22, 2026</span>
+          </div>
+          <div class="hero__detail">
+            <svg class="hero__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Sapienza University of Rome</span>
+          </div>
+        </div>
+        
+        <div class="hero__cta">
+          <a href="#speakers" class="btn btn--primary">View Speakers</a>
+          <a href="#programme" class="btn btn--outline btn--light">Programme</a>
+          <a href={`${baseUrl}programmes/workshop_21-22-May_Sapienza.pdf`} class="btn btn--outline btn--light" target="_blank" rel="noopener">
+            Official Programme (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container container--narrow">
+      <h2 class="section-title">About the Workshop</h2>
+      <div class="about__content">
+        <p>
+          <strong>Sapienza Macro Days</strong> is an annual workshop bringing together leading researchers 
+          in macroeconomics to present and discuss cutting-edge research. Now in its third edition, 
+          the workshop is jointly organized by the <em>Dipartimento di Economia e Diritto</em> and the 
+          <em>Dipartimento di Scienze Sociali ed Economiche</em> at Sapienza University of Rome.
+        </p>
+        <p>
+          The workshop provides a platform for academic exchange on topics including monetary policy, 
+          fiscal policy, household heterogeneity, macroeconometrics, and other frontiers of macroeconomic research.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speakers Section -->
+  <section class="section section--alt" id="speakers">
+    <div class="container">
+      <h2 class="section-title">Speakers</h2>
+      <div class="speakers-grid">
+        {speakers.map((speaker) => (
+          <SpeakerCard 
+            name={speaker.name}
+            affiliation={speaker.affiliation}
+            isKeynote={speaker.isKeynote}
+            imageSrc={speaker.imageSrc}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Programme Section -->
+  <section class="section" id="programme">
+    <div class="container container--narrow">
+      <h2 class="section-title">Programme</h2>
+
+      <div class="programme-pdf">
+        <a class="programme-pdf__link" href={`${baseUrl}programmes/workshop_21-22-May_Sapienza.pdf`} target="_blank" rel="noopener">
+          Official Programme (PDF)
+        </a>
+      </div>
+
+      <div class="programme-day">
+        <h3 class="programme-day__title">
+          <span class="programme-day__date">May 21, 2026</span>
+          <span class="programme-day__location">Sala Lauree, Facoltà di Economia, via del Castro Laurenziano 9</span>
+        </h3>
+
+        <div class="programme-day__sessions">
+          <SessionBlock 
+            time="13:45"
+            title="Registration and welcome address"
+            isBreak={true}
+          />
+
+          <div class="session-header">
+            <h3>Session 1: Macroeconometrics</h3>
+            <p class="session-chair">Chair: Giuseppe Ragusa (Sapienza University of Rome)</p>
+          </div>
+
+          <SessionBlock
+            time="14:00-15:00"
+            title="Bayesian Inference in IV Regressions"
+            presenter="Giorgio Primiceri"
+            affiliation="Northwestern University"
+            coauthors="Domenico Giannone and Michele Lenza"
+            discussant="Filippo Ferroni"
+            discussantAffiliation="University of Bologna"
+          />
+
+          <SessionBlock
+            time="15:00-16:00"
+            title="Interest Rate Surprises When the Fed Doesn't Speak"
+            presenter="Silvia Miranda Agrippino"
+            affiliation="University of Oxford"
+            coauthors="John C. Williams"
+            discussant="Massimiliano Tancioni"
+            discussantAffiliation="Sapienza University of Rome"
+          />
+
+          <SessionBlock
+            time="16:00-16:30"
+            title="Coffee Break"
+            isBreak={true}
+          />
+
+          <div class="session-header">
+            <h3>Session 2: Households’ Heterogeneity</h3>
+            <p class="session-chair">Chair: Salvatore Nisticò (Sapienza University of Rome)</p>
+          </div>
+
+          <SessionBlock
+            time="16:30-17:30"
+            title="Households’ Macroeconomic Beliefs: The Role of Education"
+            presenter="Alessia Russo"
+            affiliation="University of Padua"
+            coauthors="Jessica Piccolo, Eleonora Granziera, and Efrem Castelnuovo"
+            discussant="Tiziano Ropele"
+            discussantAffiliation="Banca d’Italia"
+          />
+
+          <SessionBlock
+            time="17:30-18:30"
+            title="Supply Shocks in a Heterogeneous-Firm New Keynesian Model: The Entry Multiplier"
+            presenter="Florin Bilbiie"
+            affiliation="University of Cambridge"
+            coauthors="Marc J. Melitz"
+            discussant="Andrea Ajello"
+            discussantAffiliation="FED Board"
+          />
+
+          <SessionBlock
+            time="20:00"
+            title='Dinner at "La Limonaia" (invitation only)'
+            isBreak={true}
+          />
+        </div>
+      </div>
+
+      <div class="programme-day">
+        <h3 class="programme-day__title">
+          <span class="programme-day__date">May 22, 2026</span>
+          <span class="programme-day__location">Sala Lauree, Facoltà di Scienze Politiche, Sociologia, Comunicazione, piazzale Aldo Moro 5</span>
+        </h3>
+
+        <div class="programme-day__sessions">
+          <div class="session-header">
+            <h3>Session 3: Monetary and Fiscal Policy</h3>
+            <p class="session-chair">Chair: Cristiano Cantore (Sapienza University of Rome)</p>
+          </div>
+
+          <SessionBlock
+            time="09:30-10:30"
+            title="3 lightning talks by selected PhD students from Sapienza"
+            isBreak={true}
+          />
+
+          <SessionBlock
+            time="10:30-11:00"
+            title="Coffee Break"
+            isBreak={true}
+          />
+
+          <SessionBlock
+            time="11:00-12:00"
+            title="The Perils of Narrowing Fiscal Spaces"
+            presenter="Leonardo Melosi"
+            affiliation="European University Institute"
+            coauthors="Hanno Kase, Sebastian Rast, and Matthias Rottner"
+            discussant="Facundo Piguillem"
+            discussantAffiliation="EIEF"
+          />
+
+          <SessionBlock
+            time="12:00-13:00"
+            title="The Employment Reallocation Effect of Monetary Policy"
+            presenter="Guido Ascari"
+            coauthors="Andrea Colciago and Marco Membretti"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue Section -->
+  <section class="section section--alt" id="venue">
+    <div class="container container--narrow">
+      <h2 class="section-title">Venue</h2>
+      <div class="venue-cards">
+        <div class="venue-card">
+          <h3>Day 1 — May 21</h3>
+          <p class="venue-card__name">Facoltà di Economia</p>
+          <p class="venue-card__address">Via del Castro Laurenziano 9, Rome</p>
+          <p class="venue-card__room">Sala Lauree</p>
+        </div>
+        <div class="venue-card">
+          <h3>Day 2 — May 22</h3>
+          <p class="venue-card__name">Facoltà di Scienze Politiche</p>
+          <p class="venue-card__address">Piazzale Aldo Moro 5, Rome</p>
+          <p class="venue-card__room">Sala Lauree</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past Editions Section -->
+  <section class="section" id="past">
+    <div class="container container--narrow">
+      <h2 class="section-title">Past Editions</h2>
+      <div class="past-editions">
+        <a href={`${baseUrl}2025/`} class="past-edition-card">
+          <span class="past-edition-card__year">2025</span>
+          <span class="past-edition-card__title">Sapienza Macro Days</span>
+          <span class="past-edition-card__date">May 22-23, 2025</span>
+          <span class="past-edition-card__arrow">→</span>
+        </a>
+        <a href={`${baseUrl}2024/`} class="past-edition-card">
+          <span class="past-edition-card__year">2024</span>
+          <span class="past-edition-card__title">Workshop on Household Heterogeneity, Inflation, and the Green Transition</span>
+          <span class="past-edition-card__date">June 6-7, 2024</span>
+          <span class="past-edition-card__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #2d2d4a 100%);
+    color: var(--color-white);
+    padding: var(--space-4xl) 0;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(130, 36, 51, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.15) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  
+  .hero__content {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hero__edition {
+    display: inline-block;
+    background: var(--color-accent);
+    color: var(--color-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 4px;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .hero__title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+    line-height: 1.1;
+  }
+  
+  .hero__subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .hero__details {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    flex-wrap: wrap;
+  }
+  
+  .hero__detail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1.1rem;
+  }
+  
+  .hero__icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-accent);
+  }
+  
+  .hero__cta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+  
+  .btn--light {
+    border-color: var(--color-white);
+    color: var(--color-white);
+  }
+  
+  .btn--light:hover {
+    background: var(--color-white);
+    color: var(--color-secondary);
+  }
+  
+  /* About Section */
+  .about__content {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .about__content p {
+    margin-bottom: var(--space-lg);
+  }
+  
+  /* Speakers Grid */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+  }
+  
+  .programme-pdf {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .programme-pdf__link {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-lg);
+    text-decoration: none;
+  }
+
+  .programme-pdf__link:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+  }
+  
+  /* Programme Day */
+  .programme-day {
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .programme-day__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--color-primary);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .programme-day__date {
+    font-size: 1.25rem;
+  }
+  
+  .programme-day__location {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    font-family: var(--font-sans);
+  }
+
+  .session-header {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .session-header:first-child {
+    margin-top: 0;
+    border-top: none;
+  }
+
+  .session-header h3 {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+  }
+
+  .session-chair {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  
+  /* Venue Cards */
+  .venue-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+  }
+  
+  .venue-card {
+    background: var(--color-white);
+    padding: var(--space-xl);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+  
+  .venue-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+  }
+  
+  .venue-card__name {
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .venue-card__address {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .venue-card__room {
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  /* Past Editions */
+  .past-editions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .past-edition-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    border: 1px solid var(--color-border);
+  }
+  
+  .past-edition-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+    text-decoration: none;
+    transform: translateX(4px);
+  }
+  
+  .past-edition-card__year {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  
+  .past-edition-card__title {
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+  
+  .past-edition-card__date {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+  
+  .past-edition-card__arrow {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+  }
+  
+  .past-edition-card:hover .past-edition-card__arrow {
+    transform: translateX(4px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: var(--space-3xl) 0;
+    }
+    
+    .hero__title {
+      font-size: 2.5rem;
+    }
+    
+    .hero__subtitle {
+      font-size: 1.25rem;
+    }
+    
+    .hero__details {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    
+    .past-edition-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: var(--space-sm);
+    }
+    
+    .past-edition-card__arrow {
+      display: none;
+    }
+  }
+</style>

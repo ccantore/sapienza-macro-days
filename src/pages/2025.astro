@@ -1,0 +1,319 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SessionBlock from '../components/SessionBlock.astro';
+
+const baseUrlRaw = import.meta.env.BASE_URL;
+const baseUrl = baseUrlRaw.endsWith('/') ? baseUrlRaw : `${baseUrlRaw}/`;
+---
+
+<BaseLayout title="Sapienza Macro Days 2025 | Programme">
+  <section class="archive-hero">
+    <div class="container">
+      <a href={baseUrl} class="archive-hero__back">← Back to 2026</a>
+      <p class="archive-hero__edition">Second Edition</p>
+      <h1>Sapienza Macro Days</h1>
+      <p class="archive-hero__date">May 22-23, 2025</p>
+      <p class="archive-hero__venues">
+        Venues: Facoltà di Economia, via del Castro Laurenziano 9, and Facoltà di Scienze Politiche, Sociologia, Comunicazione, piazzale Aldo Moro 5, Rome.
+      </p>
+      <p class="archive-hero__pdf">
+        <a class="archive-hero__pdf-link" href={`${baseUrl}programmes/workshop_22-23-May_Sapienza.pdf`} target="_blank" rel="noopener">
+          Official Programme (PDF)
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      
+      <!-- Day 1 -->
+      <div class="programme-day">
+        <h2 class="programme-day__title">
+          <span class="programme-day__date">May 22, 2025</span>
+          <span class="programme-day__location">Sala Lauree, Facoltà di Economia, via del Castro Laurenziano 9</span>
+        </h2>
+        
+        <div class="programme-day__sessions">
+          <SessionBlock 
+            time="13:45"
+            title="Registration and welcome address"
+            isBreak={true}
+          />
+          
+          <div class="session-header">
+            <h3>Session 1: Household Heterogeneity</h3>
+            <p class="session-chair">Chair: Cristiano Cantore (Sapienza University of Rome)</p>
+          </div>
+          
+          <SessionBlock 
+            time="14:00-15:00"
+            title="Optimal Monetary Policy during a Cost-of-Living Crisis"
+            presenter="Vincent Sterk"
+            affiliation="University College London"
+            coauthors="Alan Olivi and Dajana Xhani"
+            discussant="Alessandro Lin"
+            discussantAffiliation="Banca d'Italia"
+          />
+          
+          <SessionBlock 
+            time="15:00-16:00"
+            title="International Risk Sharing and the Transmission of Shocks Redux"
+            presenter="Edouard Challe"
+            affiliation="Paris School of Economics"
+            coauthors="Sushant Acharya and Louphou Coulibaly"
+            discussant="Cosimo Petracchi"
+            discussantAffiliation="Tor Vergata"
+          />
+          
+          <SessionBlock 
+            time="16:00-16:30"
+            title="Coffee Break"
+            isBreak={true}
+          />
+          
+          <div class="session-header">
+            <h3>Session 2: Fiscal Policy</h3>
+            <p class="session-chair">Chair: Salvatore Nisticò (Sapienza University of Rome)</p>
+          </div>
+          
+          <SessionBlock 
+            time="16:30-17:30"
+            title="Fiscal Requirements for Price Stability When Households are not Ricardian"
+            presenter="Anna Rogantini Picco"
+            affiliation="ECB"
+            coauthors="Stéphane Dupraz"
+            discussant="Sara Casella"
+            discussantAffiliation="EIEF & Luiss"
+          />
+          
+          <SessionBlock 
+            time="17:30-18:30"
+            title="Fiscal Stagnation"
+            presenter="Luca Fornaro"
+            affiliation="CREI"
+            coauthors="Martin Wolf"
+            discussant="Alessandro Piergallini"
+            discussantAffiliation="Tor Vergata"
+          />
+          
+          <SessionBlock 
+            time="20:00"
+            title="Dinner at La Limonaia (invitation only)"
+            isBreak={true}
+          />
+        </div>
+      </div>
+      
+      <!-- Day 2 -->
+      <div class="programme-day">
+        <h2 class="programme-day__title">
+          <span class="programme-day__date">May 23, 2025</span>
+          <span class="programme-day__location">Sala Lauree, Facoltà di Scienze Politiche, Sociologia, Comunicazione, piazzale Aldo Moro 5</span>
+        </h2>
+        
+        <div class="programme-day__sessions">
+          <div class="session-header">
+            <h3>Session 3: Macroeconometrics</h3>
+            <p class="session-chair">Chair: Carolina Serpieri (Sapienza University of Rome)</p>
+          </div>
+          
+          <SessionBlock 
+            time="09:30-10:30"
+            title="Higher-Order Moment Inequality Restrictions for SVARs"
+            presenter="Filippo Ferroni"
+            affiliation="Università di Bologna"
+            coauthors="Philippe Andrade and Leonardo Melosi"
+            discussant="Giuseppe Ragusa"
+            discussantAffiliation="Sapienza University of Rome"
+          />
+          
+          <SessionBlock 
+            time="10:30-11:30"
+            title="The Systematic Origins of Monetary Policy Shocks"
+            presenter="Klodiana Istrefi"
+            affiliation="Banque de France"
+            coauthors="Lukas Hack and Matthias Meier"
+            discussant="Giacomo Mangiante"
+            discussantAffiliation="Banca d'Italia"
+          />
+          
+          <SessionBlock 
+            time="11:30-12:30"
+            title="Coffee Break"
+            isBreak={true}
+          />
+          
+          <div class="session-header session-header--keynote">
+            <h3>Keynote Lecture</h3>
+          </div>
+          
+          <SessionBlock 
+            time="12:30-13:30"
+            title="Does the transmission of monetary policy shocks change when inflation is high?"
+            presenter="Fabio Canova"
+            coauthors="Fernando Perez Forero"
+          />
+          
+          <SessionBlock 
+            time="14:00-15:30"
+            title="Lunch at La Limonaia (invitation only)"
+            isBreak={true}
+          />
+        </div>
+      </div>
+      
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .archive-hero {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #2d2d4a 100%);
+    color: var(--color-white);
+    padding: var(--space-3xl) 0;
+    text-align: center;
+  }
+  
+  .archive-hero__back {
+    display: inline-block;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-lg);
+    transition: color var(--transition-fast);
+  }
+  
+  .archive-hero__back:hover {
+    color: var(--color-accent-light);
+  }
+  
+  .archive-hero__edition {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 4px;
+    margin-bottom: var(--space-md);
+  }
+  
+  .archive-hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .archive-hero__date {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .archive-hero__venues {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .archive-hero__pdf {
+    margin: var(--space-md) 0 0;
+  }
+
+  .archive-hero__pdf-link {
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    color: var(--color-white);
+    padding: var(--space-xs) var(--space-lg);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .archive-hero__pdf-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+    text-decoration: none;
+  }
+  
+  .programme-day {
+    margin-bottom: var(--space-4xl);
+  }
+  
+  .programme-day:last-child {
+    margin-bottom: 0;
+  }
+  
+  .programme-day__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--color-primary);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .programme-day__date {
+    font-size: 1.25rem;
+  }
+  
+  .programme-day__location {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    font-family: var(--font-sans);
+  }
+  
+  .session-header {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .session-header:first-child {
+    margin-top: 0;
+    border-top: none;
+  }
+  
+  .session-header h3 {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .session-chair {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  
+  .session-header--keynote {
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+    margin-left: calc(var(--space-lg) * -1);
+    margin-right: calc(var(--space-lg) * -1);
+    padding: var(--space-md) var(--space-lg);
+    border-top: none;
+  }
+  
+  .session-header--keynote h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .programme-day__title {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .archive-hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

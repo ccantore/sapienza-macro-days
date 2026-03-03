@@ -1,0 +1,139 @@
+---
+interface Props {
+  name: string;
+  affiliation: string;
+  paperTitle?: string;
+  isKeynote?: boolean;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const { name, affiliation, paperTitle, isKeynote = false, imageSrc, imageAlt = `Photo of ${name}` } = Astro.props;
+
+// Generate initials for avatar placeholder
+const initials = name
+  .split(' ')
+  .map(n => n[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+---
+
+<article class:list={['speaker-card', { 'speaker-card--keynote': isKeynote }]}>
+  {isKeynote && <span class="speaker-card__badge">Keynote</span>}
+  
+  <div class="speaker-card__avatar">
+    {imageSrc ? (
+      <img
+        class="speaker-card__image"
+        src={imageSrc}
+        alt={imageAlt}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <span class="speaker-card__initials">{initials}</span>
+    )}
+  </div>
+  
+  <div class="speaker-card__content">
+    <h3 class="speaker-card__name">{name}</h3>
+    <p class="speaker-card__affiliation">{affiliation}</p>
+    
+    {paperTitle && (
+      <p class="speaker-card__paper">
+        <span class="speaker-card__paper-label">Paper:</span>
+        {paperTitle}
+      </p>
+    )}
+  </div>
+</article>
+
+<style>
+  .speaker-card {
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    padding: var(--space-xl);
+    text-align: center;
+    position: relative;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  
+  .speaker-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .speaker-card--keynote {
+    border: 2px solid var(--color-accent);
+  }
+  
+  .speaker-card__badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: var(--color-accent);
+    color: var(--color-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+  }
+  
+  .speaker-card__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .speaker-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  
+  .speaker-card__initials {
+    color: var(--color-white);
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .speaker-card__name {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+    color: var(--color-secondary);
+  }
+  
+  .speaker-card__affiliation {
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+  
+  .speaker-card__paper {
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  
+  .speaker-card__paper-label {
+    font-weight: 600;
+    font-style: normal;
+    color: var(--color-text);
+  }
+</style>
