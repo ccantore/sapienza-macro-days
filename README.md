@@ -35,6 +35,20 @@ sapienza-macro-days/
 
 The site automatically deploys to GitHub Pages when changes are pushed to the `main` branch.
 
+### Build Targets
+
+Use the default build for Cloudflare Pages previews:
+
+```bash
+npm run build
+```
+
+Use GitHub-targeted build only when deploying under `username.github.io/repo`:
+
+```bash
+DEPLOY_TARGET=github GITHUB_PAGES_USER=YOUR_USERNAME GITHUB_PAGES_REPO=YOUR_REPO npm run build
+```
+
 ### Setup Instructions
 
 1. Create a new GitHub repository

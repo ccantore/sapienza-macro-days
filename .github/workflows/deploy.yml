@@ -31,6 +31,10 @@ jobs:
         run: npm ci
         
       - name: Build with Astro
+        env:
+          DEPLOY_TARGET: github
+          GITHUB_PAGES_USER: ${{ github.repository_owner }}
+          GITHUB_PAGES_REPO: ${{ github.event.repository.name }}
         run: npm run build
         
       - name: Upload artifact
