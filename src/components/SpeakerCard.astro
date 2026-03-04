@@ -6,9 +6,18 @@ interface Props {
   isKeynote?: boolean;
   imageSrc?: string;
   imageAlt?: string;
+  profileUrl?: string;
 }
 
-const { name, affiliation, paperTitle, isKeynote = false, imageSrc, imageAlt = `Photo of ${name}` } = Astro.props;
+const {
+  name,
+  affiliation,
+  paperTitle,
+  isKeynote = false,
+  imageSrc,
+  imageAlt = `Photo of ${name}`,
+  profileUrl
+} = Astro.props;
 
 // Generate initials for avatar placeholder
 const initials = name
@@ -21,20 +30,44 @@ const initials = name
 
 <article class:list={['speaker-card', { 'speaker-card--keynote': isKeynote }]}>
   {isKeynote && <span class="speaker-card__badge">Keynote</span>}
-  
-  <div class="speaker-card__avatar">
-    {imageSrc ? (
-      <img
-        class="speaker-card__image"
-        src={imageSrc}
-        alt={imageAlt}
-        loading="lazy"
-        decoding="async"
-      />
-    ) : (
-      <span class="speaker-card__initials">{initials}</span>
-    )}
-  </div>
+
+  {profileUrl ? (
+    <a
+      class="speaker-card__avatar-link"
+      href={profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${name} profile`}
+    >
+      <div class="speaker-card__avatar">
+        {imageSrc ? (
+          <img
+            class="speaker-card__image"
+            src={imageSrc}
+            alt={imageAlt}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <span class="speaker-card__initials">{initials}</span>
+        )}
+      </div>
+    </a>
+  ) : (
+    <div class="speaker-card__avatar">
+      {imageSrc ? (
+        <img
+          class="speaker-card__image"
+          src={imageSrc}
+          alt={imageAlt}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span class="speaker-card__initials">{initials}</span>
+      )}
+    </div>
+  )}
   
   <div class="speaker-card__content">
     <h3 class="speaker-card__name">{name}</h3>
@@ -93,6 +126,17 @@ const initials = name
     align-items: center;
     justify-content: center;
     margin: 0 auto var(--space-lg);
+  }
+
+  .speaker-card__avatar-link {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+
+  .speaker-card__avatar-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 
   .speaker-card__image {

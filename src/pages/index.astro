@@ -10,32 +10,38 @@ const speakers = [
   {
     name: "Giorgio Primiceri",
     affiliation: "Northwestern University",
-    imageSrc: `${baseUrl}images/speakers/giorgio-primiceri.jpg`
+    imageSrc: `${baseUrl}images/speakers/giorgio-primiceri.jpg`,
+    profileUrl: "https://faculty.wcas.northwestern.edu/gep575/"
   },
   {
     name: "Silvia Miranda Agrippino",
     affiliation: "University of Oxford",
-    imageSrc: `${baseUrl}images/speakers/silvia-miranda-agrippino.jpg`
+    imageSrc: `${baseUrl}images/speakers/silvia-miranda-agrippino.jpg`,
+    profileUrl: "https://silviamirandaagrippino.com"
   },
   {
     name: "Leonardo Melosi",
     affiliation: "European University Institute",
-    imageSrc: `${baseUrl}images/speakers/leonardo-melosi.jpg`
+    imageSrc: `${baseUrl}images/speakers/leonardo-melosi.jpg`,
+    profileUrl: "https://sites.google.com/site/lemelosi/"
   },
   {
     name: "Alessia Russo",
     affiliation: "University of Padova",
-    imageSrc: `${baseUrl}images/speakers/alessia-russo.png`
+    imageSrc: `${baseUrl}images/speakers/alessia-russo.png`,
+    profileUrl: "https://alessiarussoecon.weebly.com"
   },
   {
     name: "Guido Ascari",
     affiliation: "University of Pavia & De Nederlandsche Bank",
-    imageSrc: `${baseUrl}images/speakers/guido-ascari.jpg`
+    imageSrc: `${baseUrl}images/speakers/guido-ascari.jpg`,
+    profileUrl: "https://sites.google.com/site/guidoascari/"
   },
   {
     name: "Florin Bilbiie",
     affiliation: "University of Cambridge",
-    imageSrc: `${baseUrl}images/speakers/florin-bilbiie.jpg`
+    imageSrc: `${baseUrl}images/speakers/florin-bilbiie.jpg`,
+    profileUrl: "https://sites.google.com/site/florinbilbiie/home"
   }
 ];
 
@@ -43,12 +49,14 @@ const discussants = [
   {
     name: "Filippo Ferroni",
     affiliation: "University of Bologna",
-    imageSrc: `${baseUrl}images/discussants/filippo-ferroni.png`
+    imageSrc: `${baseUrl}images/discussants/filippo-ferroni.png`,
+    profileUrl: "https://naffe15.github.io"
   },
   {
     name: "Massimiliano Tancioni",
     affiliation: "Sapienza University of Rome",
-    imageSrc: `${baseUrl}images/discussants/massimiliano-tancioni2.jpg`
+    imageSrc: `${baseUrl}images/discussants/massimiliano-tancioni2.jpg`,
+    profileUrl: "https://massimilianotancioni.site.uniroma1.it"
   },
   {
     name: "Tiziano Ropele",
@@ -58,17 +66,20 @@ const discussants = [
   {
     name: "Andrea Ajello",
     affiliation: "Federal Reserve Board",
-    imageSrc: `${baseUrl}images/discussants/andrea-ajello.jpg`
+    imageSrc: `${baseUrl}images/discussants/andrea-ajello.jpg`,
+    profileUrl: "https://sites.google.com/site/ajelloandrea/"
   },
   {
     name: "Facundo Piguillem",
     affiliation: "EIEF",
-    imageSrc: `${baseUrl}images/discussants/facundo-piguillem.jpg`
+    imageSrc: `${baseUrl}images/discussants/facundo-piguillem.jpg`,
+    profileUrl: "https://sites.google.com/view/facundopiguillem"
   },
   {
     name: "Francesco Saverio Gaudio",
     affiliation: "Sapienza University of Rome",
-    imageSrc: `${baseUrl}images/discussants/francesco-saverio-gaudio.jpg`
+    imageSrc: `${baseUrl}images/discussants/francesco-saverio-gaudio.jpg`,
+    profileUrl: "https://sites.google.com/view/francescosaveriogaudio"
   }
 ];
 ---
@@ -141,6 +152,7 @@ const discussants = [
             affiliation={speaker.affiliation}
             isKeynote={speaker.isKeynote}
             imageSrc={speaker.imageSrc}
+            profileUrl={speaker.profileUrl}
           />
         ))}
       </div>
@@ -157,6 +169,7 @@ const discussants = [
             name={discussant.name}
             affiliation={discussant.affiliation}
             imageSrc={discussant.imageSrc}
+            profileUrl={discussant.profileUrl}
           />
         ))}
       </div>
